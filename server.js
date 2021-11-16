@@ -21,13 +21,17 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 // routes
 app.use("/api/workouts", workoutRoutes);
 
-// app.get('/stats', (req, res) => {
-//     res.json({});
-// });
+app.get('/stats', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './public/stats.html'));
+});
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, './public', index.html));
-// });
+app.get('/exercise', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './public/exercise.html'));
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './public/stats.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
