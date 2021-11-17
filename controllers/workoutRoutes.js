@@ -25,7 +25,6 @@ router.get("/range", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   let workout = await Workout.findById(req.params.id);
-  // console.log(req.body);
   workout.exercises.push(req.body);
 
   const result = await workout.save();
